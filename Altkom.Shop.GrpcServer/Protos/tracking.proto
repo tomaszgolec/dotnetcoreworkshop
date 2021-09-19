@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "Altkom.Shop.GrpcServer";
+
+package tracking;
+
+service TrackingService {
+	rpc AddLocation (AddLocationRequest) returns (AddLocationResponse);
+	rpc Subscribe (SubscribeRequest) returns (stream SubscribeResponse);
+}
+
+message AddLocationRequest {
+	string name = 1;
+	float latitude = 2;
+	float longitude = 3;
+	int32 speed = 4;
+	float direction = 5;
+}
+
+message AddLocationResponse{
+	bool is_confirmed = 1;
+}
+
+message SubscribeRequest{
+	string model = 1;
+	int32 speed_limit = 2;
+}
+
+message SubscribeResponse{
+	string name = 1;
+	float latitude = 2;
+	float longitude = 3;
+	int32 speed = 4;
+	float direction = 5;
+}
